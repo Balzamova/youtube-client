@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit {
       id: card.id,
       title: card.snippet?.title,
       publishedAt: card.snippet.publishedAt,
-      imageUrl: card.snippet.thumbnails.default.url,
+      imageUrl: card.snippet.thumbnails.medium.url,
       viewCount: card.statistics.viewCount,
       likeCount: card.statistics.likeCount,
       dislikeCount: card.statistics.dislikeCount,
@@ -25,5 +25,5 @@ export class UserListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { console.log(this.cards); }
+  ngOnInit(): void {}
 }

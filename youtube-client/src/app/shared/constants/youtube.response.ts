@@ -13,7 +13,7 @@ export const youtubeResponse: YoutubeResponse = {
       "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/tmmI1yiRrmLWlKikXk1gD3TXsUI\"",
       "id": "YN8zNnV0sK8",
       "snippet": {
-        "publishedAt": "2019-05-30T12:42:19.000Z",
+        "publishedAt": "2021-05-30T12:42:19.000Z",
         "channelId": "UCg8ss4xW9jASrqWGP30jXiw",
         "title": "Angular 8 - Быстрый курс за 60 минут",
         "description": "Полный курс по Angular 8+:\nhttps://clc.to/angular\n\nTelegram: https://teleg.one/js_by_vladilen \nInstagram: https://www.instagram.com/vladilen.minin \nVK: https://vk.com/vladilen.minin \nГруппа VK: https://vk.com/js_by_vladilen \n\nReact Native: мобильная разработка на JavaScript:\nhttps://clc.to/rnative\n\nПоддержать выпуск новых видео:\nЯД: https://money.yandex.ru/to/410013757655670\nPayPal: https://www.paypal.me/vladilenm \n\n30 мая 2019 года бы релиз Angular 8 и я решил записать  по нему быстрый курс. В видео вы узнаете, как Angular работает, как его установить.\nВ результате урока я покажу создание Todo приложения с разными подходами. Разберем работу с сервером, сервисами, пайпами, коммуникацией между компонентами и немного RxJS\n\nИсходный код:\nhttps://github.com/vladilenm/angular8-cc\n\nAngular 8 - Быстрый курс за 60 минут",
@@ -93,7 +93,7 @@ export const youtubeResponse: YoutubeResponse = {
       "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/uto79F2R8W05GFpiUAcLdFGs7PQ\"",
       "id": "Fdf5aTYRW0E",
       "snippet": {
-        "publishedAt": "2019-01-23T17:46:58.000Z",
+        "publishedAt": "2021-01-23T17:46:58.000Z",
         "channelId": "UC29ju8bIPH5as8OGnQzwJyA",
         "title": "Angular Crash Course",
         "description": "In this video we will talk about what Angular is and then jump in and build a small app With Angular 7, looking at most of the fundamental concepts like components, services, modules, etc\n\nSponsor:\nhttp://www.netlify.com\n\nCode:\nhttps://github.com/bradtraversy/angular-crash-todolist\n\n💖 Become a Patron: Show support & get perks!\nhttp://www.patreon.com/traversymedia\n\nWebsite & Udemy Courses\nhttp://www.traversymedia.com\n\nFollow Traversy Media:\nhttps://www.facebook.com/traversymedia\nhttps://www.twitter.com/traversymedia\nhttps://www.instagram.com/traversymedia",
@@ -152,7 +152,7 @@ export const youtubeResponse: YoutubeResponse = {
       "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/6e0k9ik7TThWpqueHGOhTRIN1-A\"",
       "id": "k5E2AVpwsko",
       "snippet": {
-        "publishedAt": "2017-09-05T16:48:15.000Z",
+        "publishedAt": "2021-07-05T16:48:15.000Z",
         "channelId": "UCWv7vMbMWH4-V0ZXdmDpPBA",
         "title": "Angular Tutorial for Beginners: Learn Angular from Scratch | Mosh",
         "description": "🔥Get the COMPLETE COURSE (60% OFF - LIMITED TIME): https://programmingwithmosh.com/courses/angular\n\nThis Angular tutorial teaches you the fundamentals of Angular and TypeScript.\n\nSUBSCRIBE FOR MORE VIDEOS!\nhttps://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA?sub_confirmation=1\n\n\nTABLE OF CONTENT \n\n00:00 Introduction\n02:54 What is Angular?\n04:54 Architecture of Angular Apps\n08:41 Setting Up the Development Environment\n11:25 Your First Angular App\n13:50 Structure of Angular Projects\n20:43 Webpack\n23:57 Angular Version History \n27:31 Course Structure\n31:55 TypeScript Fundamentals\n32:34 What is TypeScript?\n34:58 Your First TypeScript Program\n37:57 Declaring Variables\n42:46 Types\n48:29 Type Assertions\n51:15 Arrow Functions\n52:59 Interfaces\n56:54 Classes\n01:01:22 Objects\n01:05:31 Constructors\n01:08:22 Access Modifiers\n01:11:18 Access Modifiers in Constructor Parameters\n01:12:58 Properties\n01:18:15 Modules\n01:23:22 Angular Fundamentals\n01:23:41 Building Blocks of Angular Apps\n01:27:22 Creating Components\n01:37:00 Generating Components Using Angular CLI\n01:41:40 Templates\n01:44:08 Directives\n01:47:34 Services\n01:52:02 Dependency Injection\n01:59:22 Generating Services Using Angular CLI\n02:01:32 Exercise\n \n\nSTAY IN TOUCH\n\nhttps://www.facebook.com/programmingwithmosh/\nhttps://twitter.com/moshhamedani",
@@ -232,7 +232,7 @@ export const youtubeResponse: YoutubeResponse = {
       "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/cDwx4Ds5-J9CmiqmazUetzrLZKY\"",
       "id": "Rf54BH35yrY",
       "snippet": {
-        "publishedAt": "2019-09-04T15:00:12.000Z",
+        "publishedAt": "2021-07-28T15:00:12.000Z",
         "channelId": "UCg8ss4xW9jASrqWGP30jXiw",
         "title": "Angular 8 Основы. Полный Курс для начинающих",
         "description": "Полный курс по Angular 8+:\nhttps://clc.to/angular\n\nДобавляйте меня в ВК: https://vk.com/vladilen.minin\nTelegram: https://teleg.one/js_by_vladilen\nInstagram: https://www.instagram.com/vladilen.minin\nГруппа ВК: https://vk.com/js_by_vladilen\n\nПоддержать выпуск новых видео:\nЯД: https://money.yandex.ru/to/410013757655670\nPayPal: https://www.paypal.me/vladilenm \n\nУрок по Angular. В этом курсе вы познакомитесь со всеми основными элементами, которые есть в Angular с полного нуля\n\nAngular 8 Основы. Полный Курс. Урок для Новичков",
@@ -311,7 +311,7 @@ export const youtubeResponse: YoutubeResponse = {
       "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/_99tEunMszVYvCj2-1aUTKgOoSY\"",
       "id": "m0yGx2MGZWg",
       "snippet": {
-        "publishedAt": "2018-05-13T07:44:08.000Z",
+        "publishedAt": "2021-08-01T07:44:08.000Z",
         "channelId": "UCe_H8hzx9WV7Ca7Ps5gt72Q",
         "title": "Что такое Angular. Обзор возможностей",
         "description": "В этом видео речь пойдет про javascript фреймворк Angular. Я расскажу что такое Angular, где и когда его применяют, а так же сделаю небольшой обзор его возможностей. Расскажу чем фреймворк сложен для новичков и чем он действительно хорош для новых проектов. Сейчас для того что б стать junior javascript разработчиком нужно обязательно знать хотя бы один фреймворк js и ангуляр будет отличным выбором.",
@@ -608,7 +608,7 @@ export const youtubeResponse: YoutubeResponse = {
       "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/pvVvPt5cchXjCoSYxodr18lOaEg\"",
       "id": "NaZwVUHnmfE",
       "snippet": {
-        "publishedAt": "2019-06-19T16:06:13.000Z",
+        "publishedAt": "2021-06-19T16:06:13.000Z",
         "channelId": "UCg8ss4xW9jASrqWGP30jXiw",
         "title": "Angular 8 + RxJS. Приложение Органайзер С Нуля (Для Опытных!)",
         "description": "Курс по Angular 8+: \nhttps://clc.to/angular \n\nДобавляйте меня в ВК: https://vk.com/vladilen.minin\nTelegram: https://teleg.one/js_by_vladilen\nInstagram: https://www.instagram.com/vladilen.minin\nГруппа ВК: https://vk.com/js_by_vladilen\n\nПоддержать выпуск новых видео:\nЯД: https://money.yandex.ru/to/410013757655670\nPayPal: https://www.paypal.me/vladilenm \n\nВ видео я покажу разработку приложения органайзера с нуля.\nВ видео я не буду пояснять базовые моменты, так как это практика для опытных разработчиков\n\nВ результате вы получите приложение, в котором будет использоваться много RxJS, Firebase, MomentJS и Angular 8\nНе будет никаких CSS фреймворков - все стили будут написаны с нуля с использованием CSS переменных\n\nИсходный код:\nhttps://github.com/vladilenm/angular-organizer\n\nAngular 8 + RxJS. Приложение Целиком (Для Опытных!)\nhttps://youtu.be/NaZwVUHnmfE",
