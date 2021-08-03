@@ -3,17 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './footer/footer.component';
 import {
     FilterInputComponent
-} from './filters-block/components/filter-input/filter-input.component';
+} from './header/components/filters-block/components/filter-input/filter-input.component';
 import {
     SortButtonsComponent
-} from './filters-block/components/sort-buttons/sort-buttons.component';
-import { FiltersBlockComponent } from './filters-block/filters-block.component';
-import { FooterComponent } from './footer/footer.component';
+} from './header/components/filters-block/components/sort-buttons/sort-buttons.component';
+import { FiltersBlockComponent } from './header/components/filters-block/filters-block.component';
 import {
     LoginInfoBlockComponent
 } from './header/components/login-info-block/login-info-block.component';
+import { LogoComponent } from './header/components/logo/logo.component';
 import { SearchBlockComponent } from './header/components/search-block/search-block.component';
 import {
     SettingsBlockComponent
@@ -31,6 +32,7 @@ import { UserListComponent } from './user/components/user-list/user-list.compone
     SearchBlockComponent,
     SettingsBlockComponent,
     LoginInfoBlockComponent,
+    LogoComponent,
     FilterInputComponent,
     SortButtonsComponent,
     HeaderComponent,

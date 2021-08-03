@@ -1,0 +1,21 @@
+@import '../../../app.component.scss';
+
+
+div {
+  height: 100%;
+  @include flexible ();
+
+  span {
+    font-family: $standardFont;
+    font-size: 12px;
+    line-height: 14px;
+    color: #4F4F4F;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    object-fit: cover;
+  }
+}

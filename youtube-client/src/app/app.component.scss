@@ -44,5 +44,11 @@ img {vertical-align: top;}
   flex-direction: column;
 }
 
-$standardFont: Roboto;
+@mixin btnHoveredBlue () {
+  cursor: pointer;
+  filter: drop-shadow(2px 0px 4px #2F80ED);
+  background: #5EA2FF;
+}
 
+$standardFont: Roboto;
+$baseColor: #2F80ED;

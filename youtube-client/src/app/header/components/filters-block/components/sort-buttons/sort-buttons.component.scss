@@ -1,0 +1,18 @@
+@import '../../../../../app.component.scss';
+
+span {
+  font-family: $standardFont;
+  font-size: 12px;
+  line-height: 14px;
+  color: #929292;
+}
+
+button {
+  margin: 0 15px;
+  background: transparent;
+  font-family: $standardFont;
+  font-size: 12px;
+  line-height: 14px;
+  text-decoration-line: underline;
+  color: $baseColor;
+}

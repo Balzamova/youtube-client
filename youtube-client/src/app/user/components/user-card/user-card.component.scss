@@ -1,4 +1,4 @@
-@import '../../../../app.component.scss';
+@import '../../../app.component.scss';
 
 .card {
   width: 264px;
@@ -57,7 +57,7 @@
     width: 120px;
     height: 32px;
     left: 72px;
-    background: #2F80ED;
+    background: $baseColor;
     border-radius: 5px;
     @include flexible ();
     font-family: $standardFont;
@@ -66,15 +66,13 @@
     color: #FFFFFF;
 
     &:hover {
-      cursor: pointer;
-      filter: drop-shadow(2px 0px 4px #2F80ED);
-      background: #5EA2FF;
+      @include btnHoveredBlue ();
     }
   }
 }
 
 .border-blue {
-  border-bottom: 5px solid #2F80ED;
+  border-bottom: 5px solid $baseColor;
 }
 
 .border-green {

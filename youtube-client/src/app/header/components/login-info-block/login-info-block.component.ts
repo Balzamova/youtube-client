@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login-info-block.component.html',
   styleUrls: ['./login-info-block.component.scss']
 })
-export class LoginInfoBlockComponent implements OnInit {
+export class LoginInfoBlockComponent {
+  userName = 'Your name';
 
-  constructor() { }
+  photoSrc = '../../../../assets/login.svg';
+  constructor() {}
 
-  ngOnInit(): void {
-  }
 
 }

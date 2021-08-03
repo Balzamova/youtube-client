@@ -1,0 +1,25 @@
+@import '../app.component.scss';
+
+header {
+  width: 100%;
+  padding: 15px 0;
+  background: #E5E5E5;
+
+  .header__wrapper {
+    @include flexible ();
+
+    .header__main {
+      @include flexColumn ();
+      align-items: flex-start;
+
+      .header__search {
+        @include flexible ();
+      }
+
+      .header__user {
+        margin-left: 80px;
+      }
+    }
+  }
+}
+
