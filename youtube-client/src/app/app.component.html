@@ -1,3 +1,13 @@
-<app-header (filterByTitle)=filter($event)></app-header>
-<app-user-list [title]="filteredTitle"></app-user-list>
+<app-header
+  (filterByTitle)=filter($event)
+  (searchValue)=search($event)
+></app-header>
+
+<div *ngIf="searchClicked">
+  <app-user-list
+    [filteredTitle]="filteredTitle"
+    [searchedTitle]="searchedTitle"
+  ></app-user-list>
+</div>
+
 <app-footer></app-footer>

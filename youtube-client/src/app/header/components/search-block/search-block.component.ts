@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-block',
   templateUrl: './search-block.component.html',
   styleUrls: ['./search-block.component.scss']
 })
-export class SearchBlockComponent implements OnInit {
+export class SearchBlockComponent {
+  @Output() public searchValue: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  search(value: string) {
+    this.searchValue.emit(value);
   }
-
-  /*
-  Попробуйте завести в общем родителе флаг,
-  который изменяется при клике поиска,
-  а в компоненте результат слушал изменения
-  данного флага
-  */
-
 }

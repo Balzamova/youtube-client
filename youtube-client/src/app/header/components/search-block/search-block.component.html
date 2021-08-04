@@ -1,4 +1,4 @@
 <div>
-  <input type="text">
-  <button>search</button>
+  <input type="text" #input>
+  <button (click)="search(input.value)">search</button>
 </div>

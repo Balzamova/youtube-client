@@ -11,7 +11,15 @@ export class FilterPipePipe implements PipeTransform {
     if (!cards || !title) return cards;
 
     return cards.filter(card => {
-      return card.title.substr(0, title.length).toLowerCase() === title.toLowerCase();
+      return this.isTitleIncludes(card, title);
+    });
+  }
+
+  isTitleIncludes(card: UserCard, title:string): boolean {
+    const cardTitle = card.title.split(' ');
+
+    return cardTitle.some(el => {
+      return el.substr(0, title.length).toLowerCase() === title.toLowerCase();
     });
   }
 }

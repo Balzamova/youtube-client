@@ -3,7 +3,7 @@
     <div class="header__main">
       <div class="header__search">
         <app-logo></app-logo>
-        <app-search-block></app-search-block>
+        <app-search-block (searchValue)="search($event)"></app-search-block>
         <button (click)="toggleFilters()" class="header__settings"></button>
 
         <div class="header__user">

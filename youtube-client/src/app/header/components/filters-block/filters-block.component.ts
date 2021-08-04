@@ -15,5 +15,4 @@ export class FiltersBlockComponent {
   filter(title: string) {
     this.filterByTitle.emit(title);
   }
-
 }
