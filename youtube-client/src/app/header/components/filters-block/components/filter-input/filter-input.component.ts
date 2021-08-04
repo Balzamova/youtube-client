@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter-input',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter-input.component.scss']
 })
 export class FilterInputComponent {
+  @Output() public filterByTitle: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
+
+  filter(title: string) {
+    this.filterByTitle.emit(title);
+  }
 }

@@ -12,7 +12,7 @@
       </div>
 
       <div  *ngIf="toggle" class="header__filters">
-        <app-filters-block></app-filters-block>
+        <app-filters-block (filterByTitle)=filter($event)></app-filters-block>
       </div>
     </div>
   </div>

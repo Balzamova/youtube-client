@@ -1,6 +1,6 @@
 <div class="cards__list">
   <app-user-card
-    *ngFor="let card of cards"
+    *ngFor="let card of cards | filterPipe:title"
     [card] = "card"
   ></app-user-card>
 </div>

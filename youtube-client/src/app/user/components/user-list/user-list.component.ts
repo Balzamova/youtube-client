@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { youtubeResponse } from 'src/app/shared/constants/youtube.response';
 
@@ -9,7 +9,7 @@ import { UserCard } from '../../models/user-card';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
   cards: UserCard[] = youtubeResponse.items.map(card => {
     return {
       id: card.id,
@@ -23,7 +23,8 @@ export class UserListComponent implements OnInit {
     }
   });
 
-  constructor() { }
+  @Input() title = '';
 
-  ngOnInit(): void {}
+  constructor() {}
+
 }

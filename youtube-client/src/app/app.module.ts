@@ -20,6 +20,7 @@ import { SearchBlockComponent } from './header/components/search-block/search-bl
 import { HeaderComponent } from './header/header.component';
 import { UserCardComponent } from './user/components/user-card/user-card.component';
 import { UserListComponent } from './user/components/user-list/user-list.component';
+import { FilterPipePipe } from './user/pipes/filter-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UserListComponent } from './user/components/user-list/user-list.compone
     SortButtonsComponent,
     HeaderComponent,
     FiltersBlockComponent,
+    FilterPipePipe,
   ],
   imports: [
     BrowserModule,

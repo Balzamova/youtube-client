@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,12 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  toggle = false;
+  toggle = true;
+  @Output() public filterByTitle: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void { console.log('header'); }
 
   toggleFilters() {
     this.toggle = !this.toggle;
+  }
+
+  filter(title: string) {
+    this.filterByTitle.emit(title);
   }
 }

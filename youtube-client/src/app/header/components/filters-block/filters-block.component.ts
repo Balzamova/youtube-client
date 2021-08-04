@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filters-block',
   templateUrl: './filters-block.component.html',
   styleUrls: ['./filters-block.component.scss']
 })
-export class FiltersBlockComponent implements OnInit {
+export class FiltersBlockComponent {
+  title = '';
+
+  @Output() public filterByTitle: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit(): void {
+  filter(title: string) {
+    this.filterByTitle.emit(title);
   }
 
 }
