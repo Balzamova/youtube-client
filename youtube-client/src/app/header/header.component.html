@@ -4,14 +4,14 @@
       <div class="header__search">
         <app-logo></app-logo>
         <app-search-block></app-search-block>
-        <app-settings-block></app-settings-block>
+        <button (click)="toggleFilters()" class="header__settings"></button>
 
         <div class="header__user">
           <app-login-info-block></app-login-info-block>
         </div>
       </div>
 
-      <div class="header__filters">
+      <div  *ngIf="toggle" class="header__filters">
         <app-filters-block></app-filters-block>
       </div>
     </div>

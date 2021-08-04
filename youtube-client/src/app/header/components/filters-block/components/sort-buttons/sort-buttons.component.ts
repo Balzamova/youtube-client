@@ -5,11 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './sort-buttons.component.html',
   styleUrls: ['./sort-buttons.component.scss']
 })
-export class SortButtonsComponent implements OnInit {
+export class SortButtonsComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
 
 }

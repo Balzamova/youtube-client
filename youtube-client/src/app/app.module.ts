@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,9 +17,6 @@ import {
 } from './header/components/login-info-block/login-info-block.component';
 import { LogoComponent } from './header/components/logo/logo.component';
 import { SearchBlockComponent } from './header/components/search-block/search-block.component';
-import {
-    SettingsBlockComponent
-} from './header/components/settings-block/settings-block.component';
 import { HeaderComponent } from './header/header.component';
 import { UserCardComponent } from './user/components/user-card/user-card.component';
 import { UserListComponent } from './user/components/user-list/user-list.component';
@@ -30,7 +28,6 @@ import { UserListComponent } from './user/components/user-list/user-list.compone
     UserListComponent,
     FooterComponent,
     SearchBlockComponent,
-    SettingsBlockComponent,
     LoginInfoBlockComponent,
     LogoComponent,
     FilterInputComponent,
@@ -40,7 +37,8 @@ import { UserListComponent } from './user/components/user-list/user-list.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

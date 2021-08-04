@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  toggle = false;
   constructor() { }
 
   ngOnInit(): void { console.log('header'); }
 
+  toggleFilters() {
+    this.toggle = !this.toggle;
+  }
 }
