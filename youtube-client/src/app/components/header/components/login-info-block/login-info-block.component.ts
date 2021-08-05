@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-login-info-block',
@@ -8,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginInfoBlockComponent {
   userName = 'Your name';
 
-  photoSrc = '../../../../assets/login.svg';
+  photoSrc = '../../../../../assets/login.svg';
+
   constructor() {}
-
-
 }
