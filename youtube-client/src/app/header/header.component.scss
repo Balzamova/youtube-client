@@ -1,9 +1,11 @@
 @import '../app.component.scss';
 
-header {
+:host {
   width: 100%;
+  height: 100%;
   padding: 15px 0;
   background: #E5E5E5;
+  @include flexible ();
 
   .header__wrapper {
     @include flexible ();
@@ -14,21 +16,6 @@ header {
 
       .header__search {
         @include flexible ();
-
-        .header__settings {
-          width: 34px;
-          height: 27px;
-          margin: 0 20px;
-          background: url("../../assets/search_settings.svg") center/contain no-repeat;
-
-          &:hover {
-            transform: scale(1.15);
-          }
-        }
-      }
-
-      .header__user {
-        margin-left: 80px;
       }
     }
   }

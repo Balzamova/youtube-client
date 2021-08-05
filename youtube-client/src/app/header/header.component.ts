@@ -7,14 +7,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent {
   toggle = false;
+
   @Output() public filterByTitle: EventEmitter<string> = new EventEmitter();
   @Output() public searchValue: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
-
-  toggleFilters() {
-    this.toggle = !this.toggle;
-  }
 
   filter(title: string) {
     this.filterByTitle.emit(title);
@@ -22,5 +19,9 @@ export class HeaderComponent {
 
   search(value: string) {
     this.searchValue.emit(value);
+  }
+
+  handleToggle() {
+    this.toggle = !this.toggle;
   }
 }

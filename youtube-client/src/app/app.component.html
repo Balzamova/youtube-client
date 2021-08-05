@@ -3,11 +3,16 @@
   (searchValue)=search($event)
 ></app-header>
 
-<div *ngIf="searchClicked">
-  <app-user-list
-    [filteredTitle]="filteredTitle"
-    [searchedTitle]="searchedTitle"
-  ></app-user-list>
+<div class="content">
+  <section *ngIf="searchClicked">
+    <app-user-list
+      [filteredTitle]="filteredTitle"
+      [searchedTitle]="searchedTitle"
+    ></app-user-list>
+  </section>
+
+
+
 </div>
 
 <app-footer></app-footer>

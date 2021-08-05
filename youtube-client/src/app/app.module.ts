@@ -21,6 +21,7 @@ import { HeaderComponent } from './header/header.component';
 import { UserCardComponent } from './user/components/user-card/user-card.component';
 import { UserListComponent } from './user/components/user-list/user-list.component';
 import { FilterPipePipe } from './user/pipes/filter-pipe.pipe';
+import { SettingsComponent } from './header/components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FilterPipePipe } from './user/pipes/filter-pipe.pipe';
     HeaderComponent,
     FiltersBlockComponent,
     FilterPipePipe,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
