@@ -12,6 +12,8 @@ export class AppComponent {
 
   searchClicked = false;
 
+  sortBy = '';
+
   filter(title: string) {
     this.filteredTitle = title;
   }
@@ -19,5 +21,9 @@ export class AppComponent {
   search(title: string) {
     this.searchedTitle = title;
     title ? this.searchClicked = true : this.searchClicked = false;
+  }
+
+  sort(value: string) {
+    this.sortBy = value;
   }
 }

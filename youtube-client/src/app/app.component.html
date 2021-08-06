@@ -1,6 +1,7 @@
 <app-header
   (filterByTitle)=filter($event)
   (searchValue)=search($event)
+  (sortBy)=sort($event)
 ></app-header>
 
 <div class="content">
@@ -8,6 +9,7 @@
     <app-user-list
       [filteredTitle]="filteredTitle"
       [searchedTitle]="searchedTitle"
+      [sortBy]="sortBy"
     ></app-user-list>
   </section>
 
