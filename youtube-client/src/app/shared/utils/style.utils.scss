@@ -1,0 +1,20 @@
+@mixin flexible () {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexColumn () {
+  @include flexible ();
+  flex-direction: column;
+}
+
+@mixin btnHoveredBlue () {
+  cursor: pointer;
+  filter: drop-shadow(2px 0px 4px #2F80ED);
+  background: #5EA2FF;
+}
+
+$standardFont: Roboto;
+$baseColor: #2F80ED;
