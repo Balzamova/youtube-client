@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-block',
@@ -8,9 +9,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SearchBlockComponent {
   @Output() public searchValue: EventEmitter<string> = new EventEmitter();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   search(value: string) {
     this.searchValue.emit(value);
+    this.router.navigate(['/main/cards']);
   }
 }

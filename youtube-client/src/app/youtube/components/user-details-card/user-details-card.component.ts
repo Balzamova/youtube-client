@@ -1,0 +1,53 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserDetailsCard } from '@app/youtube/models/user-details-card';
+import { YoutubeService } from '@app/youtube/services/youtube.service';
+
+@Component({
+  selector: 'app-user-details-card',
+  templateUrl: './user-details-card.component.html',
+  styleUrls: ['./user-details-card.component.scss']
+})
+export class UserDetailsCardComponent implements OnInit {
+  card: UserDetailsCard = {
+    id: '',
+    title: '',
+    publishedAt: '',
+    imageUrl: '',
+    viewCount: '',
+    likeCount: '',
+    dislikeCount: '',
+    commentCount: '',
+    description: '',
+  };
+
+  border = '';
+
+  date = '';
+
+  constructor(private youtubeService: YoutubeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.checkCard();
+  }
+
+  checkCard() {
+    const cardId = this.route.snapshot.params.id;
+    const card = this.youtubeService.getCardById(cardId);
+
+    if (card) {
+      this.card = card;
+      this.border = this.youtubeService.checkBorderColor(card);
+      this.date = this.youtubeService.convertDateFormat(card.publishedAt);
+    } else {
+      this.router.navigate(['404'])
+    }
+  }
+
+  goBack() {
+    this.router.navigate(['main/cards']);
+  }
+}

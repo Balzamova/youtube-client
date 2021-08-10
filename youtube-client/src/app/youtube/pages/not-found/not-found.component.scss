@@ -1,0 +1,25 @@
+@import '../../../shared/utils/style.utils.scss';
+
+:host {
+  @include flexible ();
+  position: relative;
+  top: 100px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+  }
+
+  span {
+    width: 233.35px;
+    height: 56px;
+
+    font-family: $standardFont;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #828282;
+  }
+}
+

@@ -1,0 +1,26 @@
+@import '../../../shared/utils/style.utils.scss';
+
+:host {
+  max-width: 220px;
+  width: 100%;
+  @include flexible ();
+  justify-content: space-between;
+
+  .info {
+    width: 100%;
+    @include flexible ();
+
+    .info__img {
+      width: 20px;
+      height: 15px;
+      margin: 5px;
+    }
+
+    .info__text {
+      font-family: $standardFont;
+      font-size: 10px;
+      line-height: 12px;
+      color: #000000;
+    }
+  }
+}
