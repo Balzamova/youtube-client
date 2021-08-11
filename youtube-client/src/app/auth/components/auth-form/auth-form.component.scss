@@ -1,0 +1,78 @@
+@import '../../../shared/utils/style.utils.scss';
+
+:host {
+  @include flexible ();
+  margin-top: 50px;
+
+  form {
+    width: 344px;
+    height: 248px;
+    border-radius: 5px;
+    background: #F2F2F2;
+    padding: 25px 20px;
+    @include flexColumn ();
+    justify-content: space-between;
+    align-items: flex-start;
+
+    p {
+      font-family: $standardFont;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+      color: #000000;
+    }
+
+    label {
+      font-family: $standardFont;
+      font-size: 12px;
+      line-height: 12px;
+      color: #828282;
+    }
+
+    input {
+      width: 304px;
+      height: 37px;
+      background: #E0E0E0;
+      padding: 3px 10px;
+      font-family: $standardFont;
+      font-size: 13px;
+    }
+
+    .buttons {
+      width: 100%;
+      @include flexible ();
+      justify-content: space-between;
+
+      a {
+        font-family: $standardFont;
+        font-size: 12px;
+        line-height: 14px;
+        text-decoration-line: underline;
+        color: #2F80ED;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      button {
+        width: 124px;
+        height: 30px;
+        filter: drop-shadow(2px 0px 4px #2F80ED);
+        background: #2F80ED;
+        border-radius: 5px;
+        @include flexible ();
+        font-family: $standardFont;
+        font-size: 12px;
+        line-height: 14px;
+        color: #FFFFFF;
+
+        &:hover {
+          background: #5EA2FF;
+        }
+      }
+    }
+  }
+
+}
+

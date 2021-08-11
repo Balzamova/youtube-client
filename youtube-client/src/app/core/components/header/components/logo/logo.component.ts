@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logo',
@@ -6,5 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
-  constructor() {}
+  constructor(private router: Router) {}
+
+  goToMain() {
+    this.router.navigate(['/main']);
+  }
 }

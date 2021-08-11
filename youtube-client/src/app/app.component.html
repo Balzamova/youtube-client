@@ -4,12 +4,9 @@
   (sortBy)=sort($event)
 ></app-header>
 
-<main class="content">
-
-  <button routerLink="/auth" routerLinkActive="active">auth</button>
+<main>
 
   <router-outlet></router-outlet>
-
 
   <!-- <section *ngIf="searchClicked">
     <app-user-list
@@ -18,9 +15,6 @@
       [sortBy]="sortBy"
     ></app-user-list>
   </section> -->
-
-
-
 
 </main>
 
