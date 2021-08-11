@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-
-const STORAGE_NAME = 'user-youtube-app';
+import { STORAGE_NAME } from '@app/shared/models/storage-name';
+import { SharedService } from '@app/shared/services/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ const STORAGE_NAME = 'user-youtube-app';
 export class AuthService {
   redirectUrl = '';
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   canLogin(login: string): boolean {
     return this.saveLoginToStorage(login);
@@ -19,10 +19,13 @@ export class AuthService {
     return true;
   }
 
-  isLoggedIn(): boolean {
-    const user = localStorage.getItem(STORAGE_NAME);
+  // isLoggedIn(): boolean {
+  //   const user = localStorage.getItem(STORAGE_NAME);
 
-    if (user) return true;
-    return false;
-  }
+  //   if (user) {
+  //     this.sharedService.userName = user;
+  //     return true;
+  //   }
+  //   return false;
+  // }
 }

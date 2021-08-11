@@ -1,14 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SharedService } from '@app/shared/services/shared.service';
+
+const PHOTO_SRC = '../../../../../../assets/login.svg';
+const YOUR_NAME = 'Your name';
 
 @Component({
   selector: 'app-login-info-block',
   templateUrl: './login-info-block.component.html',
   styleUrls: ['./login-info-block.component.scss']
 })
-export class LoginInfoBlockComponent {
-  userName = 'Your name';
+export class LoginInfoBlockComponent implements OnInit {
+  userName = YOUR_NAME;
 
-  photoSrc = '../../../../../../assets/login.svg';
+  toggle = false;
 
-  constructor() {}
+  photoSrc = PHOTO_SRC;
+
+  constructor(private sharedService: SharedService, private router: Router) {}
+
+  ngOnInit() {
+    if (this.sharedService.isLoggedIn()) {
+      this.userName = this.sharedService.userName;
+      this.toggle = true;
+    }
+  }
+
+  logout() {
+    this.toggle = false;
+    this.userName = YOUR_NAME;
+    this.router.navigate(['/auth']);
+    this.sharedService.logout();
+  }
 }

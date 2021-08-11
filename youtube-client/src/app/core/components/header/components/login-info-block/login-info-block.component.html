@@ -1,2 +1,6 @@
 <div>{{ userName }}</div>
 <img [src]="photoSrc" alt="photo">
+
+<div *ngIf="toggle">
+  <button (click)=logout() routerLinkActive="active">Logout</button>
+</div>

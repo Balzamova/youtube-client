@@ -2,6 +2,7 @@
 
 :host {
   @include flexible();
+  margin: 50px auto;
 
   .card {
     width: 1200px;

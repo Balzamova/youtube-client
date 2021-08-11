@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
+import { CanActivate, CanLoad, Router, UrlTree } from '@angular/router';
+import { SharedService } from '@app/shared/services/shared.service';
 
 import { Observable } from 'rxjs';
-
-import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanLoad {
+export class AuthGuard implements CanLoad, CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private sharedService: SharedService, private router: Router) {}
 
-  canLoad(route: Route): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // const url = `${route.path}`;
+  canLoad(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.checkLogin();
+  }
 
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.checkLogin();
   }
 
   checkLogin(): boolean {
-    if (this.authService.isLoggedIn()) return true;
+    if (this.sharedService.isLoggedIn()) return true;
 
     this.router.navigate(['/auth']);
     return false;
