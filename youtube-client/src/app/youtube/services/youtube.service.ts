@@ -126,6 +126,8 @@ export class YoutubeService {
       default:
         color = BorderColor.red;
     }
+    console.log()
+    
 
     return color;
   }

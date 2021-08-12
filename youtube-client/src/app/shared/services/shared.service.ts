@@ -12,6 +12,8 @@ export class SharedService {
 
   userName = '';
 
+  public userName$ = new EventEmitter<string>();
+
   searchInputValue = '';
 
   filterInputValue = '';
@@ -22,7 +24,7 @@ export class SharedService {
     const user = localStorage.getItem(STORAGE_NAME);
 
     if (user) {
-      this.userName = user;
+      this.userName$.emit(user)
       return true;
     }
     return false;
