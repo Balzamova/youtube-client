@@ -1,2 +1,6 @@
 <input type="text" #input>
-<button (click)="search(input.value)" routerLinkActive="active">search</button>
+<button
+  (click)="search(input.value)"
+  routerLinkActive="active"
+  routerLinkActiveOptions="{exact: true}"
+>search</button>

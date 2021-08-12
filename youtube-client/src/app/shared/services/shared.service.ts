@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { STORAGE_NAME } from '../models/storage-name';
 
@@ -6,7 +6,15 @@ import { STORAGE_NAME } from '../models/storage-name';
   providedIn: 'root'
 })
 export class SharedService {
+  public onFilter$ = new EventEmitter<string>();
+
+  public onSort$ = new EventEmitter<string>();
+
   userName = '';
+
+  searchInputValue = '';
+
+  filterInputValue = '';
 
   constructor() {}
 

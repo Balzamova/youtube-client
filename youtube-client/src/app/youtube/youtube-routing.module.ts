@@ -12,8 +12,8 @@ const routes: Routes = [
     path: '',
     component: MainPageComponent,
     children: [
-      { path: 'cards', component: UserListComponent },
-      { path: ':id', component: UserDetailsCardComponent },
+      { path: 'card/:id', component: UserDetailsCardComponent },
+      { path: ':id', component: UserListComponent },
     ]
   },
 ];

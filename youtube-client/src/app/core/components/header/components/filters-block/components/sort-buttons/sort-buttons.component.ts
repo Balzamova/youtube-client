@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { SharedService } from '@app/shared/services/shared.service';
 
 import { sortBy } from '../../models/sort-by';
 
@@ -8,21 +9,21 @@ import { sortBy } from '../../models/sort-by';
   styleUrls: ['./sort-buttons.component.scss']
 })
 export class SortButtonsComponent {
-  @Output() public sortBy: EventEmitter<string> = new EventEmitter();
+  viewsState = false;
 
-  state = false;
+  dateState = false;
 
-  constructor() {}
+  constructor(private sharedService: SharedService) {}
 
   sort(value: string) {
-    this.sortBy.emit(value);
+    this.sharedService.onSort$.emit(value);
   }
 
   sortByDate() {
-    this.state = !this.state;
+    this.dateState = !this.dateState;
     let date;
 
-    if (this.state) {
+    if (this.dateState) {
       date = sortBy.dateAsc;
     } else {
       date = sortBy.dateDesc;
@@ -32,10 +33,10 @@ export class SortButtonsComponent {
   }
 
   sortByViews() {
-    this.state = !this.state;
+    this.viewsState = !this.viewsState;
     let views;
 
-    if (this.state) {
+    if (this.viewsState) {
       views = sortBy.viewsAsc;
     } else {
       views = sortBy.viewsDesc;

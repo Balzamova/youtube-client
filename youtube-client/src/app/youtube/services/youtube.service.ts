@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BorderColor } from '@app/shared/models/card-border-color';
-import { DaysGone } from '@app/shared/models/card-days-passed';
+import { sortBy } from '@app/core/components/header/components/filters-block/models/sort-by';
 import { KindYoutubeVideo } from '@app/shared/models/kind-youtube-video';
+import { BorderColor } from '@app/youtube/models/card-border-color';
+import { DaysGone } from '@app/youtube/models/card-days-passed';
 
 import { Month } from '../models/month';
 import { UserCard } from '../models/user-card';
@@ -10,9 +11,6 @@ import { youtubeMockResponse } from './youtube-response';
 
 @Injectable()
 export class YoutubeService {
-  isDateAscend = true;
-
-  isViewsAscend = true;
 
   getCard(card: KindYoutubeVideo): UserCard {
     return {
@@ -60,28 +58,32 @@ export class YoutubeService {
     return `${month} ${published[2]}, ${published[0]}`;
   }
 
-  sortByViews(cards: UserCard[]): UserCard[] {
-    this.isViewsAscend = !this.isViewsAscend;
+  sortByViews(cards: UserCard[], sort: string): UserCard[] {
+    let state = true;
+
+    sort === sortBy.viewsAsc ? state = false : state = true;
 
     cards.sort((a,b) => {
       const c = +a.viewCount;
       const d = +b.viewCount;
 
-      if (this.isViewsAscend) return c - d;
+      if (state) return c - d;
       return d - c;
     });
 
     return cards;
   }
 
-  sortByDate(cards: UserCard[]): UserCard[] {
-    this.isDateAscend = !this.isDateAscend;
+  sortByDate(cards: UserCard[], sort: string): UserCard[] {
+    let state = true;
+
+    sort === sortBy.dateAsc ? state = false : state = true;
 
     cards.sort((a,b) => {
       const c = this.getPublishDate(a);
       const d = this.getPublishDate(b);
 
-      if (this.isDateAscend) return c - d;
+      if (state) return c - d;
       return d - c;
     });
 

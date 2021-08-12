@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from '@app/shared/services/shared.service';
 import { UserDetailsCard } from '@app/youtube/models/user-details-card';
 import { YoutubeService } from '@app/youtube/services/youtube.service';
 
@@ -26,6 +27,7 @@ export class UserDetailsCardComponent implements OnInit {
   date = '';
 
   constructor(private youtubeService: YoutubeService,
+    private sharedService: SharedService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -48,6 +50,7 @@ export class UserDetailsCardComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['main/cards']);
+    const id = this.sharedService.searchInputValue;
+    this.router.navigate(['main', id]);
   }
 }

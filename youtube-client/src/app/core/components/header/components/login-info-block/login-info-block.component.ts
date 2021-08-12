@@ -21,7 +21,7 @@ export class LoginInfoBlockComponent implements OnInit {
 
   ngOnInit() {
     if (this.sharedService.isLoggedIn()) {
-      this.userName = this.sharedService.userName;
+      this.userName = 'Welcome, ' + this.sharedService.userName;
       this.toggle = true;
     }
   }

@@ -18,14 +18,4 @@ export class AuthService {
     localStorage.setItem(STORAGE_NAME, login);
     return true;
   }
-
-  // isLoggedIn(): boolean {
-  //   const user = localStorage.getItem(STORAGE_NAME);
-
-  //   if (user) {
-  //     this.sharedService.userName = user;
-  //     return true;
-  //   }
-  //   return false;
-  // }
 }

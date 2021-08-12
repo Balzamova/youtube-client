@@ -1,21 +1,7 @@
-<app-header
-  (filterByTitle)=filter($event)
-  (searchValue)=search($event)
-  (sortBy)=sort($event)
-></app-header>
+<app-header></app-header>
 
 <main>
-
   <router-outlet></router-outlet>
-
-  <!-- <section *ngIf="searchClicked">
-    <app-user-list
-      [filteredTitle]="filteredTitle"
-      [searchedTitle]="searchedTitle"
-      [sortBy]="sortBy"
-    ></app-user-list>
-  </section> -->
-
 </main>
 
 <app-footer></app-footer>

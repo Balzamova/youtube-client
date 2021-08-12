@@ -37,5 +37,4 @@ export class AuthFormComponent {
       this.sharedService.userName = this.login;
     }
   }
-
 }

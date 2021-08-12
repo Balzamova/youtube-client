@@ -29,6 +29,6 @@ export class UserCardComponent implements OnInit {
   }
 
   open(id: string) {
-    this.router.navigate([`/main/${id}`]);
+    this.router.navigate([`/main/card/${id}`]);
   }
 }
