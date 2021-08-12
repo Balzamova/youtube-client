@@ -17,12 +17,33 @@
       left: -32px;
       width: 32px;
       height: 32px;
-      background: #2F80ED url(../../../../assets/back.svg) center/20px 20px no-repeat;
+
+      background: #2F80ED;
       filter: drop-shadow(-2px 2px 4px rgba(47, 128, 237, 0.25));
       border-radius: 5px 0px 0px 5px;
 
+      &:before {
+        content: '';
+        width: 3px;
+        height: 18px;
+        background: #fff;
+        position: absolute;
+        bottom: 2px;
+        transform: rotate(-45deg);
+      }
+
+      &:after {
+        content: '';
+        width: 3px;
+        height: 18px;
+        background: #fff;
+        position: absolute;
+        top: 2px;
+        transform: rotate(45deg);
+      }
+
       &:hover {
-        background: #27AE60 url(../../../../assets/back.svg) center/20px 20px no-repeat;
+        background: #27AE60;
       }
     }
 
