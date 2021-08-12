@@ -10,6 +10,6 @@ export class LogoComponent {
   constructor(private router: Router) {}
 
   goToMain() {
-    this.router.navigate(['/main']);
+    this.router.navigate(['']);
   }
 }
