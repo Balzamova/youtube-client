@@ -126,8 +126,6 @@ export class YoutubeService {
       default:
         color = BorderColor.red;
     }
-    console.log()
-    
 
     return color;
   }
@@ -146,11 +144,11 @@ export class YoutubeService {
     const currentDay = currentDate.getDate();
 
     if (currentYear - publishedYear !== 0) {
-      return daysGone = DaysGone.moreMonth;
+      return daysGone = DaysGone.moreSixMonth;
     }
 
     if (currentMonth - publishedMonth >= 6) {
-      return daysGone = DaysGone.moreMonth;
+      return daysGone = DaysGone.moreSixMonth;
     }
 
     if (currentMonth - publishedMonth < 6
@@ -158,7 +156,7 @@ export class YoutubeService {
       return daysGone = DaysGone.sixMonth;
     }
 
-    if (currentDay - publishedDay > DaysGone.week) {
+    if (currentDay - publishedDay >= DaysGone.week) {
       return daysGone = DaysGone.month;
     }
 

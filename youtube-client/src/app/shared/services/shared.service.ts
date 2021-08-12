@@ -10,9 +10,9 @@ export class SharedService {
 
   public onSort$ = new EventEmitter<string>();
 
-  userName = '';
-
   public userName$ = new EventEmitter<string>();
+
+  userName = '';
 
   searchInputValue = '';
 

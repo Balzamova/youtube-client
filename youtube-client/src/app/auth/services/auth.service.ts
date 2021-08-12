@@ -8,7 +8,7 @@ import { SharedService } from '@app/shared/services/shared.service';
 export class AuthService {
   redirectUrl = '';
 
-  constructor(private sharedService: SharedService) { }
+  constructor() { }
 
   canLogin(login: string): boolean {
     return this.saveLoginToStorage(login);

@@ -34,7 +34,6 @@ export class AuthFormComponent {
 
     if (this.authService.canLogin(this.login)) {
       this.router.navigate(['/main']);
-      // this.sharedService.userName = this.login;
       this.sharedService.userName$.emit(this.login)
     }
   }
