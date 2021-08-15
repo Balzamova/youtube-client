@@ -5,7 +5,6 @@ import { YoutubeResponse } from '@app/shared/models/youtube-response';
 import { BorderColor } from '@app/youtube/models/card-border-color';
 import { DaysGone } from '@app/youtube/models/card-days-passed';
 
-import { Month } from '../models/month';
 import { UserCard } from '../models/user-card';
 import { UserDetailsCard } from '../models/user-details-card';
 import { youtubeMockResponse } from './youtube-response';
@@ -81,13 +80,6 @@ export class YoutubeService {
     };
   }
 
-  convertDateFormat(date: string): string {
-    const published = date.split('T')[0].split('-');
-    const month = Month[+published[1] - 1];
-
-    return `${month} ${published[2]}, ${published[0]}`;
-  }
-
   sort(cards: UserCard[], param: string): UserCard[] {
     if (param === sortBy.dateAsc
       || param === sortBy.dateDesc) {
@@ -124,8 +116,8 @@ export class YoutubeService {
     sort === sortBy.dateAsc ? state = false : state = true;
 
     cards.sort((a,b) => {
-      const c = this.getPublishDate(a);
-      const d = this.getPublishDate(b);
+      const c = this.getPassedDays(a);
+      const d = this.getPassedDays(b);
 
       if (state) return c - d;
       return d - c;
@@ -134,23 +126,12 @@ export class YoutubeService {
     return cards;
   }
 
-  getPublishDate(card: UserCard): number {
-    const published = card.publishedAt.split('T')[0];
-    const currentDate = published.split('-').reverse();
-    const start = [0, 0, 1970];
-    const passedDays: number[] = [];
+  getPassedDays(card: UserCard): number {
+    const date: Date = new Date(card.publishedAt);
+    const currentDate = Date.now();
+    const daysGone = Math.ceil(Math.abs(currentDate - date.getTime()) / (1000 * 3600 * 24));
 
-    for (let i = 0; i < currentDate.length; i++) {
-      passedDays.push(+currentDate[i] - start[i])
-    }
-
-    return this.getPassedDays(passedDays);
-  }
-
-  getPassedDays(array: number[]): number {
-    const daysInMonth = 30;
-    const daysInYear = 365;
-    return array[0] + array[1] * daysInMonth + array[2] * daysInYear;
+    return daysGone;
   }
 
   checkBorderColor(card: UserCard): string {
@@ -175,9 +156,7 @@ export class YoutubeService {
   }
 
   checkPassedDays(card: UserCard): number {
-    const date: Date = new Date(card.publishedAt);
-    const currentDate = Date.now();
-    const daysGone = Math.ceil(Math.abs(currentDate - date.getTime()) / (1000 * 3600 * 24));
+    const daysGone = this.getPassedDays(card);
 
     if (daysGone >= DaysGone.moreSixMonth) {
       return DaysGone.moreSixMonth;

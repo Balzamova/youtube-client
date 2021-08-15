@@ -24,7 +24,7 @@ export class UserDetailsCardComponent implements OnInit {
 
   border = '';
 
-  date = '';
+  cardDate: Date = new Date;
 
   constructor(private youtubeService: YoutubeService,
     private sharedService: SharedService,
@@ -43,7 +43,7 @@ export class UserDetailsCardComponent implements OnInit {
     if (card) {
       this.card = card;
       this.border = this.youtubeService.checkBorderColor(card);
-      this.date = this.youtubeService.convertDateFormat(card.publishedAt);
+      this.cardDate = new Date(card.publishedAt);
     } else {
       this.router.navigate(['404'])
     }
