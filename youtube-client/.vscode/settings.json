@@ -36,5 +36,6 @@
         "source.fixAll": true,
         "source.organizeImports": true
     },
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "liveServer.settings.port": 5501
 }

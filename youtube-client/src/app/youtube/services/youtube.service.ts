@@ -131,51 +131,22 @@ export class YoutubeService {
   }
 
   checkPassedDays(card: UserCard): number {
-    let daysGone = 0;
-    const publishedDate = card.publishedAt.split('T')[0];
-    const currentDate = new Date();
+    const date: Date = new Date(card.publishedAt);
+    const currentDate = Date.now();
+    const daysGone = Math.ceil(Math.abs(currentDate - date.getTime()) / (1000 * 3600 * 24));
 
-    const publishedYear = +publishedDate.split('-')[0];
-    const publishedMonth = +publishedDate.split('-')[1];
-    const publishedDay = +publishedDate.split('-')[2];
-
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1;
-    const currentDay = currentDate.getDate();
-
-    if (currentYear - publishedYear !== 0) {
-      return daysGone = DaysGone.moreSixMonth;
+    if (daysGone >= DaysGone.moreSixMonth) {
+      return DaysGone.moreSixMonth;
     }
 
-    if (currentMonth - publishedMonth >= 6) {
-      return daysGone = DaysGone.moreSixMonth;
+    if (daysGone > DaysGone.month) {
+      return DaysGone.sixMonth;
     }
 
-    if (currentMonth - publishedMonth < 6
-      && currentMonth - publishedMonth > 1) {
-      return daysGone = DaysGone.sixMonth;
+    if (daysGone > DaysGone.week) {
+      return DaysGone.month;
     }
 
-    if (currentDay - publishedDay >= DaysGone.week) {
-      return daysGone = DaysGone.month;
-    }
-
-    if (currentDay - publishedDay < DaysGone.week
-      && currentDay - publishedDay > 0) {
-      return daysGone = DaysGone.week;
-    }
-
-    if (currentDay - publishedDay < 0) {
-      const monthLength = 30;
-      const days = (monthLength - publishedDay) + currentDay;
-
-      if (days < DaysGone.week) {
-        return daysGone = DaysGone.week;
-      } else {
-        return daysGone = DaysGone.month;
-      }
-    }
-
-    return daysGone;
+    return DaysGone.week;
   }
 }
