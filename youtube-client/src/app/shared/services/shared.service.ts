@@ -12,6 +12,8 @@ export class SharedService {
 
   public userName$ = new EventEmitter<string>();
 
+  public searchInputValue$ = new EventEmitter<string>();
+
   userName = '';
 
   searchInputValue = '';

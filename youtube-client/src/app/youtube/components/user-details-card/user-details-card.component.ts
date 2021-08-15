@@ -51,6 +51,8 @@ export class UserDetailsCardComponent implements OnInit {
 
   goBack() {
     const id = this.sharedService.searchInputValue;
+
     this.router.navigate(['main', id]);
+    this.sharedService.searchInputValue$.emit(id);
   }
 }

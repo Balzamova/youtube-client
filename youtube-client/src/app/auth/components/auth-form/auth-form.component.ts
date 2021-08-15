@@ -33,7 +33,7 @@ export class AuthFormComponent {
     if (!this.login || !this.password) return;
 
     if (this.authService.canLogin(this.login)) {
-      this.router.navigate(['/main']);
+      this.router.navigate(['main']);
       this.sharedService.userName$.emit(this.login)
     }
   }

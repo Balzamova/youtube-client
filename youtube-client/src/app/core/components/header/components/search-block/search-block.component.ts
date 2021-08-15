@@ -16,7 +16,8 @@ export class SearchBlockComponent {
   search(value: string) {
     if (!value) return;
 
-    this.router.navigate([`/main/${value}`]);
+    this.router.navigate([`main/${value}`]);
     this.sharedService.searchInputValue = value;
+    this.sharedService.searchInputValue$.emit(value);
   }
 }

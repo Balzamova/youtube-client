@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { sortBy } from '@app/core/components/header/components/filters-block/models/sort-by';
 import { KindYoutubeVideo } from '@app/shared/models/kind-youtube-video';
+import { YoutubeResponse } from '@app/shared/models/youtube-response';
 import { BorderColor } from '@app/youtube/models/card-border-color';
 import { DaysGone } from '@app/youtube/models/card-days-passed';
 
@@ -11,6 +12,35 @@ import { youtubeMockResponse } from './youtube-response';
 
 @Injectable()
 export class YoutubeService {
+  youtubeResponse?: YoutubeResponse;
+
+  getCardsByTitle(searchedTitle: string) {
+    const items = this.youtubeResponse?.items;
+    const cards = [];
+
+    if (!items?.length) return [];
+
+    for (let i = 0; i < items.length; i++) {
+      const needShow = this.checkTitles(items[i].snippet.title, searchedTitle);
+      if (needShow) {
+        const card = this.getCard(items[i]);
+        cards.push(card);
+      }
+    }
+
+    return cards;
+  }
+
+  checkTitles(title: string, searchedTitle: string): boolean {
+    const array = title.toLowerCase().split(' ');
+    const toShow = searchedTitle.toLowerCase().trim();
+
+    if (!toShow.length) return false;
+
+    return array.some(el => {
+      return el.substr(0, toShow.length) === toShow;
+    });
+  }
 
   getCard(card: KindYoutubeVideo): UserCard {
     return {
@@ -56,6 +86,20 @@ export class YoutubeService {
     const month = Month[+published[1] - 1];
 
     return `${month} ${published[2]}, ${published[0]}`;
+  }
+
+  sort(cards: UserCard[], param: string): UserCard[] {
+    if (param === sortBy.dateAsc
+      || param === sortBy.dateDesc) {
+      return this.sortByDate(cards, param);
+    }
+
+    if (param === sortBy.viewsAsc
+      || param === sortBy.viewsDesc) {
+      return this.sortByViews(cards, param);
+    }
+
+    return [];
   }
 
   sortByViews(cards: UserCard[], sort: string): UserCard[] {
