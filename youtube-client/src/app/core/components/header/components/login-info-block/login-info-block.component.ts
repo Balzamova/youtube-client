@@ -8,7 +8,7 @@ const YOUR_NAME = 'Your name';
 @Component({
   selector: 'app-login-info-block',
   templateUrl: './login-info-block.component.html',
-  styleUrls: ['./login-info-block.component.scss']
+  styleUrls: ['./login-info-block.component.scss'],
 })
 export class LoginInfoBlockComponent implements OnInit {
   userName = YOUR_NAME;
@@ -20,12 +20,10 @@ export class LoginInfoBlockComponent implements OnInit {
   constructor(private sharedService: SharedService, private router: Router) {}
 
   ngOnInit() {
-    if (this.sharedService.isLoggedIn()) {
-      this.sharedService.userName$.subscribe((value) => {
-        this.userName = 'Welcome, ' + value;
-        this.toggle = true;
-      });
-    }
+    this.sharedService.userName$.subscribe((value) => {
+      this.userName = 'Welcome, ' + value;
+      this.toggle = true;
+    });
   }
 
   logout() {
