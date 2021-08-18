@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { sortBy } from '@app/core/components/header/components/filters-block/models/sort-by';
 import { KindYoutubeVideo } from '@app/shared/models/kind-youtube-video';
+import { SortingDirection } from '@app/shared/models/sorting-direction';
 import { YoutubeResponse } from '@app/shared/models/youtube-response';
 import { BorderColor } from '@app/youtube/models/card-border-color';
 import { DaysGone } from '@app/youtube/models/card-days-passed';
@@ -81,13 +81,13 @@ export class YoutubeService {
   }
 
   sort(cards: UserCard[], param: string): UserCard[] {
-    if (param === sortBy.dateAsc
-      || param === sortBy.dateDesc) {
+    if (param === SortingDirection.dateAsc
+      || param === SortingDirection.dateDesc) {
       return this.sortByDate(cards, param);
     }
 
-    if (param === sortBy.viewsAsc
-      || param === sortBy.viewsDesc) {
+    if (param === SortingDirection.viewsAsc
+      || param === SortingDirection.viewsDesc) {
       return this.sortByViews(cards, param);
     }
 
@@ -97,7 +97,7 @@ export class YoutubeService {
   sortByViews(cards: UserCard[], sort: string): UserCard[] {
     let state = true;
 
-    sort === sortBy.viewsAsc ? state = false : state = true;
+    sort === SortingDirection.viewsAsc ? state = false : state = true;
 
     cards.sort((a,b) => {
       const c = +a.viewCount;
@@ -113,7 +113,7 @@ export class YoutubeService {
   sortByDate(cards: UserCard[], sort: string): UserCard[] {
     let state = true;
 
-    sort === sortBy.dateAsc ? state = false : state = true;
+    sort === SortingDirection.dateAsc ? state = false : state = true;
 
     cards.sort((a,b) => {
       const c = this.getPassedDays(a);

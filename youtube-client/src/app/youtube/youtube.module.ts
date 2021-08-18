@@ -9,14 +9,14 @@ import {
 import { UserListComponent } from './components/user-list/user-list.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { FilterPipePipe } from './pipes/filter-pipe.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 import { YoutubeService } from './services/youtube.service';
 import { YoutubeRoutingModule } from './youtube-routing.module';
 
 const youtubeComponents = [
   UserListComponent,
   UserCardComponent,
-  FilterPipePipe,
+  FilterPipe,
   NotFoundComponent,
   UserDetailsCardComponent,
   MainPageComponent,
