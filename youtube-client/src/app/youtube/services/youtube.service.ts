@@ -1,61 +1,122 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { BaseYoutubeResponse } from '@app/shared/models/base-youtube-response';
+import { FullYoutubeResponse } from '@app/shared/models/full-youtube-response';
 import { KindYoutubeVideo } from '@app/shared/models/kind-youtube-video';
+import { SearchYoutubeKind } from '@app/shared/models/search-youtube-kind';
 import { SortingDirection } from '@app/shared/models/sorting-direction';
-import { YoutubeResponse } from '@app/shared/models/youtube-response';
+import { ConfigService } from '@app/shared/services/config.service';
+import { SharedService } from '@app/shared/services/shared.service';
 import { BorderColor } from '@app/youtube/models/card-border-color';
 import { DaysGone } from '@app/youtube/models/card-days-passed';
 
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+
 import { UserCard } from '../models/user-card';
 import { UserDetailsCard } from '../models/user-details-card';
-import { youtubeMockResponse } from './youtube-response';
+import { CardsHttpService } from './cards-http.service';
 
 @Injectable()
 export class YoutubeService {
-  youtubeResponse?: YoutubeResponse;
+  private youtubeResponse$: Observable<BaseYoutubeResponse>;
 
-  getCardsByTitle(searchedTitle: string) {
-    const items = this.youtubeResponse?.items;
-    const cards = [];
+  private youtubeResponse$$ = new BehaviorSubject<BaseYoutubeResponse>({
+    kind: '',
+    etag: '',
+    pageInfo: {
+      totalResults: 0,
+      resultsPerPage: 0,
+    },
+    nextPageToken: '',
+    regionCode: '',
+    items: [],
+  });
 
-    if (!items?.length) return [];
+  private statisticsResponse$: Observable<FullYoutubeResponse>;
+
+  private statisticsResponse$$ = new BehaviorSubject<FullYoutubeResponse>({
+    kind: '',
+    etag: '',
+    pageInfo: {
+      totalResults: 0,
+      resultsPerPage: 0
+    },
+    items: []
+  });
+
+  public cardsList$ = new EventEmitter<UserCard[]>();
+
+  public cards: UserCard[] = [];
+
+  constructor(
+    private configService: ConfigService,
+    private cardsHttp: CardsHttpService,
+    private sharedService: SharedService
+  ) {
+    this.youtubeResponse$ = this.youtubeResponse$$.asObservable();
+    this.statisticsResponse$ = this.statisticsResponse$$.asObservable();
+  }
+
+  initData(searchedTitle: string) {
+    this.cardsHttp.getCards(searchedTitle)
+      .subscribe((resp) => {
+        if (resp.items) {
+          this.getStatisticsData(resp.items);
+        }
+    });
+  }
+
+  getStatisticsData(items: SearchYoutubeKind[]) {
+    this.cardsHttp.getStatistics(this.getCardsId(items))
+      .subscribe((resp) => {
+        this.statisticsResponse$$.next(resp);
+      });
+  }
+
+  getCardsId(items: SearchYoutubeKind[]) {
+    return items.map(item => {
+      return item.id.videoId;
+    });
+  }
+
+  getCards(items: KindYoutubeVideo[]) {
+    const cards: UserCard[] = [];
 
     for (let i = 0; i < items.length; i++) {
-      const needShow = this.checkTitles(items[i].snippet.title, searchedTitle);
-      if (needShow) {
-        const card = this.getCard(items[i]);
-        cards.push(card);
-      }
+      const card = this.getCard(items[i]);
+      cards.push(card);
     }
 
+    this.cards = cards;
     return cards;
   }
 
-  checkTitles(title: string, searchedTitle: string): boolean {
-    const array = title.toLowerCase().split(' ');
-    const toShow = searchedTitle.toLowerCase().trim();
+  getCardsByTitle(searchedTitle: UserCard['title']) {
+    this.initData(searchedTitle);
 
-    if (!toShow.length) return false;
+    if (this.statisticsResponse$$) {
+      const items = this.statisticsResponse$$.value.items;
+      if (!items) return [];
 
-    return array.some(el => {
-      return el.substr(0, toShow.length) === toShow;
-    });
+      return this.getCards(items);
+    }
+    return [];
   }
 
   getCard(card: KindYoutubeVideo): UserCard {
     return {
-        id: card.id,
-        title: card.snippet.title,
-        publishedAt: card.snippet.publishedAt,
-        imageUrl: card.snippet.thumbnails.medium.url,
-        viewCount: card.statistics.viewCount,
-        likeCount: card.statistics.likeCount,
-        dislikeCount: card.statistics.dislikeCount,
-        commentCount: card.statistics.commentCount,
-    }
+      id: card.id,
+      title: card.snippet.title,
+      publishedAt: card.snippet.publishedAt,
+      imageUrl: card.snippet.thumbnails.medium.url,
+      viewCount: card.statistics.viewCount,
+      likeCount: card.statistics.likeCount,
+      dislikeCount: card.statistics.dislikeCount,
+      commentCount: card.statistics.commentCount,
+    };
   }
 
-  getCardById(id: string): UserDetailsCard | undefined {
-    const list = youtubeMockResponse?.items;
+  getCardById(id: UserCard['id']): UserDetailsCard | undefined {
+    const list = this.statisticsResponse$$.value.items;
     const element = list.find(item => item.id === id);
 
     if (element) return this.getCardFromElem(element);
@@ -64,7 +125,7 @@ export class YoutubeService {
 
   getCardFromElem(element: KindYoutubeVideo): UserDetailsCard {
     const { id, statistics, snippet } = element;
-    const { thumbnails} = snippet;
+    const { thumbnails } = snippet;
     const { standard } = thumbnails;
 
     return {
@@ -76,18 +137,16 @@ export class YoutubeService {
       likeCount: statistics.likeCount,
       dislikeCount: statistics.dislikeCount,
       commentCount: statistics.commentCount,
-      description: snippet.description
+      description: snippet.description,
     };
   }
 
   sort(cards: UserCard[], param: string): UserCard[] {
-    if (param === SortingDirection.dateAsc
-      || param === SortingDirection.dateDesc) {
+    if (param === SortingDirection.dateAsc || param === SortingDirection.dateDesc) {
       return this.sortByDate(cards, param);
     }
 
-    if (param === SortingDirection.viewsAsc
-      || param === SortingDirection.viewsDesc) {
+    if (param === SortingDirection.viewsAsc || param === SortingDirection.viewsDesc) {
       return this.sortByViews(cards, param);
     }
 
@@ -97,9 +156,9 @@ export class YoutubeService {
   sortByViews(cards: UserCard[], sort: string): UserCard[] {
     let state = true;
 
-    sort === SortingDirection.viewsAsc ? state = false : state = true;
+    sort === SortingDirection.viewsAsc ? (state = false) : (state = true);
 
-    cards.sort((a,b) => {
+    cards.sort((a, b) => {
       const c = +a.viewCount;
       const d = +b.viewCount;
 
@@ -113,9 +172,9 @@ export class YoutubeService {
   sortByDate(cards: UserCard[], sort: string): UserCard[] {
     let state = true;
 
-    sort === SortingDirection.dateAsc ? state = false : state = true;
+    sort === SortingDirection.dateAsc ? (state = false) : (state = true);
 
-    cards.sort((a,b) => {
+    cards.sort((a, b) => {
       const c = this.getPassedDays(a);
       const d = this.getPassedDays(b);
 
@@ -129,7 +188,9 @@ export class YoutubeService {
   getPassedDays(card: UserCard): number {
     const date: Date = new Date(card.publishedAt);
     const currentDate = Date.now();
-    const daysGone = Math.ceil(Math.abs(currentDate - date.getTime()) / (1000 * 3600 * 24));
+    const daysGone = Math.ceil(
+      Math.abs(currentDate - date.getTime()) / (1000 * 3600 * 24),
+    );
 
     return daysGone;
   }
@@ -138,16 +199,16 @@ export class YoutubeService {
     let color = '';
     const passedDays: number = this.checkPassedDays(card);
 
-    switch(true) {
-      case (passedDays === DaysGone.week) :
+    switch (true) {
+      case passedDays === DaysGone.week:
         color = BorderColor.blue;
-      break;
-      case (passedDays === DaysGone.month) :
+        break;
+      case passedDays === DaysGone.month:
         color = BorderColor.green;
-      break;
-      case (passedDays === DaysGone.sixMonth) :
+        break;
+      case passedDays === DaysGone.sixMonth:
         color = BorderColor.yellow;
-      break;
+        break;
       default:
         color = BorderColor.red;
     }

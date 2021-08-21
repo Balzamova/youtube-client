@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '@app/shared/services/shared.service';
-import { youtubeMockResponse } from '@app/youtube/services/youtube-response';
 import { UserCard } from '@youtube/models/user-card';
 import { YoutubeService } from '@youtube/services/youtube.service';
 
@@ -15,16 +14,15 @@ export class UserListComponent implements OnInit {
   cards: UserCard[] = [];
 
   constructor(
-    private youtubeService: YoutubeService,
+    public youtubeService: YoutubeService,
     private sharedService: SharedService,
   ) {}
 
   ngOnInit() {
-    this.youtubeService.youtubeResponse = youtubeMockResponse;
-
     this.subscribeInput();
     this.subscribeSorting();
     this.subscribeFilters();
+    this.subscribeDetailsCard();
   }
 
   subscribeInput() {
@@ -32,6 +30,14 @@ export class UserListComponent implements OnInit {
       if (!value) return;
 
       this.cards = [...this.youtubeService.getCardsByTitle(value)];
+    });
+  }
+
+  subscribeDetailsCard() {
+    this.youtubeService.cardsList$.subscribe((value) => {
+      if (!value) return;
+
+      this.cards = [...value];
     });
   }
 

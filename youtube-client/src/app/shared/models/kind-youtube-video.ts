@@ -1,4 +1,5 @@
 import { Thumbnails } from './thumbnails';
+import { YoutubeStatistics } from './youtube-statistics';
 
 export interface KindYoutubeVideo {
   kind: string;
@@ -27,11 +28,5 @@ export interface KindYoutubeVideo {
     };
     defaultAudioLanguage: string;
   };
-  statistics: {
-    viewCount: string;
-    likeCount: string;
-    dislikeCount: string;
-    favoriteCount: string;
-    commentCount: string;
-  };
+  statistics: YoutubeStatistics;
 }

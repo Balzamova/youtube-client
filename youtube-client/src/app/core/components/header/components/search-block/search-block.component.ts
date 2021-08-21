@@ -14,7 +14,7 @@ export class SearchBlockComponent {
     private sharedService: SharedService) {}
 
   search(value: string) {
-    if (!value) return;
+    if (!value || value.length < 3) return;
 
     this.router.navigate([`main/${value}`]);
     this.sharedService.searchInputValue = value;
