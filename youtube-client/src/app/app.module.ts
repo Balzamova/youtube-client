@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { INTERCEPTOR_PROVIDERS } from './shared/interceptors/providers';
 import { YoutubeModule } from './youtube/youtube.module';
 
 @NgModule({
@@ -26,7 +27,7 @@ import { YoutubeModule } from './youtube/youtube.module';
     BrowserAnimationsModule,
     MatSnackBarModule,
   ],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDERS],
   bootstrap: [AppComponent],
   exports: [],
 })
