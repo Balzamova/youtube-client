@@ -1,1 +1,7 @@
-<input type="text" #input (input)="search(input.value)">
+<input
+  #input
+  type="text"
+  placeholder="What do you want to find out?"
+  (input)="search(input.value)"
+>
+

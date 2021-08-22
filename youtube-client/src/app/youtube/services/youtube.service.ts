@@ -19,17 +19,7 @@ import { CardsHttpService } from './cards-http.service';
 export class YoutubeService {
   private youtubeResponse$: Observable<BaseYoutubeResponse>;
 
-  private youtubeResponse$$ = new BehaviorSubject<BaseYoutubeResponse>({
-    kind: '',
-    etag: '',
-    pageInfo: {
-      totalResults: 0,
-      resultsPerPage: 0,
-    },
-    nextPageToken: '',
-    regionCode: '',
-    items: [],
-  });
+  private youtubeResponse$$ = new Subject<BaseYoutubeResponse>();
 
   private statisticsResponse$: Observable<FullYoutubeResponse>;
 
@@ -43,22 +33,26 @@ export class YoutubeService {
     items: []
   });
 
+  public cards$: Observable<UserCard[]>;
+
+  private cards$$ = new Subject<UserCard[]>();
+
   public cardsList$ = new EventEmitter<UserCard[]>();
 
   public cards: UserCard[] = [];
 
   constructor(
-    private configService: ConfigService,
     private cardsHttp: CardsHttpService,
-    private sharedService: SharedService
   ) {
     this.youtubeResponse$ = this.youtubeResponse$$.asObservable();
     this.statisticsResponse$ = this.statisticsResponse$$.asObservable();
+    this.cards$ = this.cards$$.asObservable();
   }
 
   initData(searchedTitle: string) {
     this.cardsHttp.getCards(searchedTitle)
       .subscribe((resp) => {
+        console.log(resp.items);
         if (resp.items) {
           this.getStatisticsData(resp.items);
         }

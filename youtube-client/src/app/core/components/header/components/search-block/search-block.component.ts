@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedService } from '@app/shared/services/shared.service';
 
+import { fromEvent, of } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-search-block',
   templateUrl: './search-block.component.html',

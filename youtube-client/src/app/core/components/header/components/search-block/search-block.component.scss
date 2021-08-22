@@ -13,6 +13,11 @@
     padding: 5px 10px;
     font-family: $standardFont;
     color: #000;
+
+    &:placeholder {
+      font-family: $standardFont;
+      color: #000;
+    }
   }
 
   button {
