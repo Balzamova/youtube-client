@@ -1,0 +1,90 @@
+@import '../../../shared/utils/style.utils.scss';
+
+.card {
+  width: 264px;
+  height: 327px;
+  margin: 20px;
+  background: #E5E5E5;
+  border-radius: 5px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+  @include flexColumn ();
+  justify-content: space-between;
+  padding: 20px 20px 10px;
+
+  .card__img {
+    width: 223px;
+    height: 123px;
+  }
+
+  .card__info {
+    width: 100%;
+    @include flexible ();
+    justify-content: space-between;
+
+    .info {
+      width: 100%;
+      @include flexible ();
+
+      .info__img {
+        width: 20px;
+        height: 15px;
+        margin: 5px;
+      }
+
+      .info__text {
+        font-family: $standardFont;
+        font-size: 10px;
+        line-height: 12px;
+        color: #000000;
+      }
+    }
+  }
+
+  .card__title {
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-self: flex-end;
+    font-family: $standardFont;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #4F4F4F;
+  }
+
+  .card__btn {
+    width: 120px;
+    height: 32px;
+    left: 72px;
+    background: $baseColor;
+    border-radius: 5px;
+    @include flexible ();
+    font-family: $standardFont;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+
+    &:hover {
+      @include btnHoveredBlue ();
+    }
+  }
+}
+
+.border-blue {
+  border-bottom: 5px solid $baseColor;
+}
+
+.border-green {
+  border-bottom: 5px solid #27AE60;
+}
+
+.border-red {
+  border-bottom: 5px solid #EB5757;
+}
+
+.border-yellow {
+  border-bottom: 5px solid #F2C94C;
+}
