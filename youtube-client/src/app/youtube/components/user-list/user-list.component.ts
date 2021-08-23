@@ -27,17 +27,20 @@ export class UserListComponent implements OnInit {
 
   subscribeInput() {
     this.sharedService.searchInputValue$.subscribe((value) => {
-      if (!value) return;
-
-      this.cards = [...this.youtubeService.getCardsByTitle(value)];
+      this.youtubeService.initData(value).subscribe(
+        (resp) => {
+          if (!resp) return;
+          this.youtubeService.getStatisticsData(resp.items).subscribe((resp) => {
+            this.cards = this.youtubeService.getCards(resp.items);
+          });
+        }
+      );
     });
   }
 
   subscribeDetailsCard() {
-    this.youtubeService.cardsList$.subscribe((value) => {
-      if (!value) return;
-
-      this.cards = [...value];
+    this.youtubeService.cardsList$.subscribe(() => {
+      this.cards = [...this.youtubeService.cards];
     });
   }
 

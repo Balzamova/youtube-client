@@ -4,12 +4,10 @@ import { FullYoutubeResponse } from '@app/shared/models/full-youtube-response';
 import { KindYoutubeVideo } from '@app/shared/models/kind-youtube-video';
 import { SearchYoutubeKind } from '@app/shared/models/search-youtube-kind';
 import { SortingDirection } from '@app/shared/models/sorting-direction';
-import { ConfigService } from '@app/shared/services/config.service';
-import { SharedService } from '@app/shared/services/shared.service';
 import { BorderColor } from '@app/youtube/models/card-border-color';
 import { DaysGone } from '@app/youtube/models/card-days-passed';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { UserCard } from '../models/user-card';
 import { UserDetailsCard } from '../models/user-details-card';
@@ -17,53 +15,22 @@ import { CardsHttpService } from './cards-http.service';
 
 @Injectable()
 export class YoutubeService {
-  private youtubeResponse$: Observable<BaseYoutubeResponse>;
-
-  private youtubeResponse$$ = new Subject<BaseYoutubeResponse>();
-
-  private statisticsResponse$: Observable<FullYoutubeResponse>;
-
-  private statisticsResponse$$ = new BehaviorSubject<FullYoutubeResponse>({
-    kind: '',
-    etag: '',
-    pageInfo: {
-      totalResults: 0,
-      resultsPerPage: 0
-    },
-    items: []
-  });
-
-  public cards$: Observable<UserCard[]>;
-
-  private cards$$ = new Subject<UserCard[]>();
-
   public cardsList$ = new EventEmitter<UserCard[]>();
 
   public cards: UserCard[] = [];
 
+  public responseItems: KindYoutubeVideo[] = [];
+
   constructor(
     private cardsHttp: CardsHttpService,
-  ) {
-    this.youtubeResponse$ = this.youtubeResponse$$.asObservable();
-    this.statisticsResponse$ = this.statisticsResponse$$.asObservable();
-    this.cards$ = this.cards$$.asObservable();
+  ) {}
+
+  initData(searchedTitle: string): Observable<BaseYoutubeResponse> {
+    return this.cardsHttp.getCards(searchedTitle);
   }
 
-  initData(searchedTitle: string) {
-    this.cardsHttp.getCards(searchedTitle)
-      .subscribe((resp) => {
-        console.log(resp.items);
-        if (resp.items) {
-          this.getStatisticsData(resp.items);
-        }
-    });
-  }
-
-  getStatisticsData(items: SearchYoutubeKind[]) {
-    this.cardsHttp.getStatistics(this.getCardsId(items))
-      .subscribe((resp) => {
-        this.statisticsResponse$$.next(resp);
-      });
+  getStatisticsData(items: SearchYoutubeKind[]): Observable<FullYoutubeResponse> {
+    return this.cardsHttp.getStatistics(this.getCardsId(items));
   }
 
   getCardsId(items: SearchYoutubeKind[]) {
@@ -80,21 +47,11 @@ export class YoutubeService {
       cards.push(card);
     }
 
+    this.responseItems = items;
     this.cards = cards;
     return cards;
   }
 
-  getCardsByTitle(searchedTitle: UserCard['title']) {
-    this.initData(searchedTitle);
-
-    if (this.statisticsResponse$$) {
-      const items = this.statisticsResponse$$.value.items;
-      if (!items) return [];
-
-      return this.getCards(items);
-    }
-    return [];
-  }
 
   getCard(card: KindYoutubeVideo): UserCard {
     return {
@@ -109,9 +66,8 @@ export class YoutubeService {
     };
   }
 
-  getCardById(id: UserCard['id']): UserDetailsCard | undefined {
-    const list = this.statisticsResponse$$.value.items;
-    const element = list.find(item => item.id === id);
+  getCardById(id: UserDetailsCard['id']): UserDetailsCard | undefined {
+    const element = this.responseItems.find(item => item.id === id);
 
     if (element) return this.getCardFromElem(element);
     return;
