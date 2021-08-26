@@ -1,0 +1,136 @@
+@import '../../../shared/utils/style.utils.scss';
+
+:host {
+  @include flexible();
+  margin: 50px auto;
+
+  .card {
+    width: 1200px;
+    height: 460px;
+    @include flexible();
+    align-items: start;
+    position: relative;
+
+    button {
+      position: absolute;
+      top: 0;
+      left: -32px;
+      width: 32px;
+      height: 32px;
+
+      background: #2F80ED;
+      filter: drop-shadow(-2px 2px 4px rgba(47, 128, 237, 0.25));
+      border-radius: 5px 0px 0px 5px;
+
+      &:before {
+        content: '';
+        width: 3px;
+        height: 18px;
+        background: #fff;
+        position: absolute;
+        bottom: 2px;
+        transform: rotate(-45deg);
+      }
+
+      &:after {
+        content: '';
+        width: 3px;
+        height: 18px;
+        background: #fff;
+        position: absolute;
+        top: 2px;
+        transform: rotate(45deg);
+      }
+
+      &:hover {
+        background: #27AE60;
+      }
+    }
+
+    img {
+      width: 729px;
+      height: 460px;
+      filter: drop-shadow(5px 10px 20px rgba(51, 51, 51, 0.25));
+      border-radius: 0px 0px 0px 5px;
+    }
+
+    .info-block {
+      width: 100%;
+      height: 100%;
+      padding: 35px;
+      @include flexColumn();
+      justify-content: space-between;
+      background: #E5E5E5;
+      box-shadow: 5px 5px 20px rgba(51, 51, 51, 0.25);
+
+      .name {
+        width: 100%;
+        height: 100%;
+        @include flexible();
+        justify-content: space-between;
+
+        .title {
+          width: 248px;
+          height: 80px;
+          overflow: hidden;
+          font-family: $standardFont;
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 28px;
+          color: #000000;
+        }
+
+        .date {
+          font-family: $standardFont;
+          font-size: 10px;
+          line-height: 12px;
+          text-align: right;
+          color: #828282;
+        }
+      }
+
+      .description {
+        @include flexColumn();
+        align-self: flex-start;
+        margin: 20px 0;
+
+        .descr__name {
+          align-self: flex-start;
+          font-family: $standardFont;
+          font-size: 14px;
+          line-height: 16px;
+          color: #000000;
+          text-align: start;
+          margin-bottom: 15px;
+        }
+
+        .descr__text {
+          width: 100%;
+          height: 225px;
+          font-family: $standardFont;
+          font-size: 12px;
+          line-height: 14px;
+          color: #828282;
+          text-align: start;
+          overflow-y: hidden;
+        }
+      }
+    }
+  }
+}
+
+.border-blue {
+  border-bottom: $borderBlue;
+}
+
+.border-green {
+  border-bottom: $borderGreen;
+}
+
+.border-red {
+  border-bottom: $borderRed;
+}
+
+.border-yellow {
+  border-bottom: $borderYellow;
+}

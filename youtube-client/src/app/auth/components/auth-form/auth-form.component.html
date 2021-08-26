@@ -1,1 +1,24 @@
-<p>auth-form works!</p>
+<form>
+  <p>Login</p>
+
+  <label for="input__login">login</label>
+  <input
+    type="text"
+    id="input__login"
+    #login
+    (input)="loginInput(login.value)"
+  >
+
+  <label for="input__password">password</label>
+  <input
+    type="password"
+    id="input__password"
+    #password
+    (input)="passwordInput(password.value)"
+  >
+
+  <div class="buttons">
+    <a>Registration</a>
+    <button (click)="onLogin($event)" routerLinkActive="active">Login</button>
+  </div>
+</form>

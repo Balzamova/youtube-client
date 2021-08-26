@@ -2,16 +2,13 @@
   <div class="header__main">
     <div class="header__search">
       <app-logo></app-logo>
-      <app-search-block (searchValue)="search($event)"></app-search-block>
+      <app-search-block></app-search-block>
       <app-settings (toggleFilterEvent)="handleToggle()"></app-settings>
       <app-login-info-block></app-login-info-block>
     </div>
 
     <div *ngIf="toggle">
-      <app-filters-block
-        (filterByTitle)=filter($event)
-        (sortBy)=sort($event)
-      ></app-filters-block>
+      <app-filters-block></app-filters-block>
     </div>
   </div>
 </div>

@@ -1,0 +1,28 @@
+<div class="card">
+  <button
+    (click)="goBack()"
+    routerLinkActive="active"
+  ></button>
+
+    <img [src]="this.card.imageUrl" [alt]="this.card.title">
+
+  <div class="info-block"
+    [class.border-blue] = "border === 'border-blue'"
+    [class.border-green] = "border === 'border-green'"
+    [class.border-red] = "border === 'border-red'"
+    [class.border-yellow] = "border === 'border-yellow'"
+  >
+    <div class="name">
+      <div class="title"> {{ this.card.title }} </div>
+      <div class="date">  {{ cardDate | date: 'fullDate'}} </div>
+    </div>
+
+    <div class="description">
+      <div  class="descr__name"> Description: </div>
+      <div class="descr__text"> {{ this.card.description }} </div>
+    </div>
+
+    <app-card-info [card]="card"></app-card-info>
+
+  </div>
+</div>

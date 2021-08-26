@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { sortBy } from '@app/core/components/header/components/filters-block/models/sort-by';
-import { YoutubeResponse } from '@shared/models/youtube-response';
+import { Component, OnInit } from '@angular/core';
+import { SharedService } from '@app/shared/services/shared.service';
+import { youtubeMockResponse } from '@app/youtube/services/youtube-response';
 import { UserCard } from '@youtube/models/user-card';
 import { YoutubeService } from '@youtube/services/youtube.service';
 
@@ -9,57 +9,41 @@ import { YoutubeService } from '@youtube/services/youtube.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnChanges {
-  @Input() filteredTitle = '';
-  @Input() searchedTitle = '';
-  @Input() sortBy = '';
+export class UserListComponent implements OnInit {
+  filteredTitle = '';
 
   cards: UserCard[] = [];
 
-  youtubeResponse?: YoutubeResponse;
+  constructor(
+    private youtubeService: YoutubeService,
+    private sharedService: SharedService,
+  ) {}
 
-  constructor(private youtubeService: YoutubeService) {}
+  ngOnInit() {
+    this.youtubeService.youtubeResponse = youtubeMockResponse;
 
-  ngOnChanges() {
-    this.youtubeResponse = this.youtubeService.youtubeResponse;
-    this.cards = this.getCardsByTitle();
-    this.sort();
+    this.subscribeInput();
+    this.subscribeSorting();
+    this.subscribeFilters();
   }
 
-  sort() {
-    if (this.sortBy === sortBy.dateAsc
-      || this.sortBy === sortBy.dateDesc) {
-      this.cards = this.youtubeService.sortByDate(this.cards);
-    }
-    if (this.sortBy === sortBy.viewsAsc
-      || this.sortBy === sortBy.viewsDesc) {
-      this.cards = this.youtubeService.sortByViews(this.cards);
-    }
+  subscribeInput() {
+    this.sharedService.searchInputValue$.subscribe((value) => {
+      if (!value) return;
+
+      this.cards = [...this.youtubeService.getCardsByTitle(value)];
+    });
   }
 
-  getCardsByTitle() {
-    const items = this.youtubeResponse?.items;
-    const cards = [];
-
-    if (!items?.length) return [];
-
-    for (let i = 0; i < items.length; i++) {
-      const needShow = this.checkTitles(items[i].snippet.title);
-      if (needShow) {
-        const card = this.youtubeService.getCard(items[i]);
-        cards.push(card);
-      }
-    }
-
-    return cards;
+  subscribeSorting() {
+    this.sharedService.onSort$.subscribe((value) => {
+      this.cards = this.youtubeService.sort(this.cards, value);
+    });
   }
 
-  checkTitles(title: string): boolean {
-    const array = title.toLowerCase().split(' ');
-    const toShow = this.searchedTitle.toLowerCase().trim();
-
-    return array.some(el => {
-      return el.substr(0, toShow.length) === toShow;
+  subscribeFilters() {
+    this.sharedService.onFilter$.subscribe((title) => {
+      this.filteredTitle = title;
     });
   }
 }

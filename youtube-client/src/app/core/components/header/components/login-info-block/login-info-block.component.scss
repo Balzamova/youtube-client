@@ -3,14 +3,31 @@
 :host {
   margin-left: 80px;
   @include flexible ();
+  justify-content: space-between;
 
-  div {
-    min-width: 80px;
+  .user-name {
+    min-width: 100px;
     width: 100%;
     font-family: $standardFont;
     font-size: 12px;
     line-height: 14px;
     color: #4F4F4F;
+    text-transform: capitalize;
+  }
+
+  button {
+    width: 40px;
+    height: 24px;
+    background: transparent;
+    font-family: $standardFont;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration-line: underline;
+    color: #2F80ED;
+
+    &:hover {
+      color: #27AE60;
+    }
   }
 
   img {

@@ -5,25 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  filteredTitle = '';
-
-  searchedTitle = '';
-
-  searchClicked = false;
-
-  sortBy = '';
-
-  filter(title: string) {
-    this.filteredTitle = title;
-  }
-
-  search(title: string) {
-    this.searchedTitle = title;
-    title ? this.searchClicked = true : this.searchClicked = false;
-  }
-
-  sort(value: string) {
-    this.sortBy = value;
-  }
-}
+export class AppComponent {}

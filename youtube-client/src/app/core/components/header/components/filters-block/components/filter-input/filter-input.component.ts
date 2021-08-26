@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { SharedService } from '@app/shared/services/shared.service';
 
 @Component({
   selector: 'app-filter-input',
@@ -6,11 +7,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./filter-input.component.scss']
 })
 export class FilterInputComponent {
-  @Output() public filterByTitle: EventEmitter<string> = new EventEmitter();
-
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   filter(title: string) {
-    this.filterByTitle.emit(title);
+    this.sharedService.onFilter$.emit(title)
   }
 }

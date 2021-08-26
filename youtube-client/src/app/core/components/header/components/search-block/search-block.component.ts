@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from '@app/shared/services/shared.service';
 
 @Component({
   selector: 'app-search-block',
@@ -6,11 +8,16 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search-block.component.scss']
 })
 export class SearchBlockComponent {
-  @Output() public searchValue: EventEmitter<string> = new EventEmitter();
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private sharedService: SharedService) {}
 
   search(value: string) {
-    this.searchValue.emit(value);
+    if (!value) return;
+
+    this.router.navigate([`main/${value}`]);
+    this.sharedService.searchInputValue = value;
+    this.sharedService.searchInputValue$.emit(value);
   }
 }
