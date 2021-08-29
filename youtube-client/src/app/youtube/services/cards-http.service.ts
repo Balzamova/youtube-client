@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseYoutubeResponse } from '@app/shared/models/base-youtube-response';
 import { FullYoutubeResponse } from '@app/shared/models/full-youtube-response';
-import { SearchYoutubeKind } from '@app/shared/models/search-youtube-kind';
 import { ConfigService } from '@app/shared/services/config.service';
 import { ProgressBarService } from '@app/shared/services/progress-bar.service';
 

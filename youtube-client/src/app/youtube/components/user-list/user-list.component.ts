@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '@app/shared/services/shared.service';
+import { AppState, State } from '@app/store/state';
+import { createFeatureSelector, Store } from '@ngrx/store';
 import { UserCard } from '@youtube/models/user-card';
 import { YoutubeService } from '@youtube/services/youtube.service';
+
+import { Observable } from 'rxjs';
+
+import * as CardsActions from '../../store/actions';
 
 @Component({
   selector: 'app-user-list',
@@ -14,11 +20,14 @@ export class UserListComponent implements OnInit {
   cards: UserCard[] = [];
 
   constructor(
+    private store: Store<AppState>,
     public youtubeService: YoutubeService,
     private sharedService: SharedService,
-  ) {}
+  ) { }
 
   ngOnInit() {
+    console.log(State.cardState.cards);
+
     this.subscribeInput();
     this.subscribeSorting();
     this.subscribeFilters();
@@ -32,6 +41,7 @@ export class UserListComponent implements OnInit {
           if (!resp) return;
           this.youtubeService.getStatisticsData(resp.items).subscribe((resp) => {
             this.cards = this.youtubeService.getCards(resp.items);
+            this.store.dispatch(CardsActions.updateState({ cards: this.cards }));
           });
         }
       );

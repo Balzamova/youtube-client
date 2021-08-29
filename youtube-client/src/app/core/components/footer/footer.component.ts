@@ -6,5 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+  autorName = '© Anastasiia Balzamova';
+
+  autorLink = 'https://github.com/Balzamova';
+
+  schoolName = '© Rolling Scopes School';
+
+  schoolLink = 'https://docs.rs.school/';
+
   constructor() { }
 }

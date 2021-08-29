@@ -1,0 +1,25 @@
+@import '../../../shared/utils/style.utils.scss';
+
+:host {
+  width: 100%;
+  height: 100%;
+  @include flexColumn ();
+  flex-wrap: wrap;
+  padding: 20px;
+
+  button {
+    width: 80px;
+    height: 30px;
+    background: $baseColor;
+    border-radius: 4px;
+    font-family: $standardFont;
+    color: #fff;
+    font-size: 12px;
+    line-height: 14px;
+    margin: 20px;
+
+    &:hover {
+      @include btnHoveredBlue ();
+    }
+  }
+}

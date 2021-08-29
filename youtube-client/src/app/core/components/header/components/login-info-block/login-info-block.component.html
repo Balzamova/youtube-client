@@ -2,5 +2,9 @@
 <img [src]="photoSrc" alt="photo">
 
 <div *ngIf="toggle">
-  <button (click)=logout() routerLinkActive="active">Logout</button>
+  <button class="logout" (click)=logout() routerLinkActive="active">Logout</button>
+</div>
+
+<div *ngIf="toggle">
+  <button class="admin" (click)=toAdmin() routerLinkActive="active"> {{ adminBtnName }} </button>
 </div>

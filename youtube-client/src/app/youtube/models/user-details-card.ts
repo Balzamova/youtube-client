@@ -1,5 +1,5 @@
-import { BaseCard } from '@shared/models/base-card';
+import { UserCard } from './user-card';
 
-export interface UserDetailsCard extends BaseCard {
+export interface UserDetailsCard extends UserCard {
   description: string;
 }

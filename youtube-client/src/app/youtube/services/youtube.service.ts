@@ -76,13 +76,12 @@ export class YoutubeService {
   getCardFromElem(element: KindYoutubeVideo): UserDetailsCard {
     const { id, statistics, snippet } = element;
     const { thumbnails } = snippet;
-    const { standard } = thumbnails;
 
     return {
       id: id,
       title: snippet.title,
       publishedAt: snippet.publishedAt,
-      imageUrl: standard.url,
+      imageUrl: thumbnails.standard.url,
       viewCount: statistics.viewCount,
       likeCount: statistics.likeCount,
       dislikeCount: statistics.dislikeCount,
@@ -146,24 +145,18 @@ export class YoutubeService {
   }
 
   checkBorderColor(card: UserCard): string {
-    let color = '';
     const passedDays: number = this.checkPassedDays(card);
 
     switch (true) {
       case passedDays === DaysGone.week:
-        color = BorderColor.blue;
-        break;
+        return BorderColor.blue;
       case passedDays === DaysGone.month:
-        color = BorderColor.green;
-        break;
+        return BorderColor.green;
       case passedDays === DaysGone.sixMonth:
-        color = BorderColor.yellow;
-        break;
+        return BorderColor.yellow;
       default:
-        color = BorderColor.red;
+        return BorderColor.red;
     }
-
-    return color;
   }
 
   checkPassedDays(card: UserCard): number {
