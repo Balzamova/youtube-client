@@ -24,7 +24,9 @@ export class CardsHttpService {
       delay(2000),
       take(1),
       switchMap((config) => {
-        return this.http.get<BaseYoutubeResponse>(`${config.searchUrl}${value}`);
+        const url = `${config.searchUrl}${value}`;
+        
+        return this.http.get<BaseYoutubeResponse>(url);
       }),
       finalize(() => { this.progressBar.hide(); }),
     );
@@ -34,9 +36,9 @@ export class CardsHttpService {
     this.progressBar.show();
     return this.configService.getConfig().pipe(
       switchMap((config) => {
-        return this.http.get<FullYoutubeResponse>(
-          `${config.statisticsUrl}${ids.join(',')}${config.statisticsConfigUrl}`
-        );
+        const url = `${config.statisticsUrl}${ids.join(',')}${config.statisticsConfigUrl}`;
+
+        return this.http.get<FullYoutubeResponse>(url);
       }),
       finalize(() => { this.progressBar.hide(); }),
     );
