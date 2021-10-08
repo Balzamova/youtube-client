@@ -4,7 +4,7 @@ import { UserCard } from '@youtube/models/user-card';
 @Pipe({
   name: 'filterPipe'
 })
-export class FilterPipePipe implements PipeTransform {
+export class FilterPipe implements PipeTransform {
 
   transform(cards: UserCard[], title: string): UserCard[] {
     if (!cards || !title) return cards;
