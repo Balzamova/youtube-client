@@ -53,6 +53,6 @@ export class UserDetailsCardComponent implements OnInit {
     const id = this.sharedService.searchInputValue;
 
     this.router.navigate(['main', id]);
-    this.sharedService.searchInputValue$.emit(id);
+    this.youtubeService.cardsList$.emit([]);
   }
 }

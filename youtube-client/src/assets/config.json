@@ -1,0 +1,5 @@
+{
+  "searchUrl": "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBLGAGOSDEQwRJIB2x7q5V3pzBiVLx8NtI&type=video&part=snippet&maxResults=15&q=",
+  "statisticsUrl": "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBLGAGOSDEQwRJIB2x7q5V3pzBiVLx8NtI&id=",
+  "statisticsConfigUrl": "&part=snippet,statistics"
+}

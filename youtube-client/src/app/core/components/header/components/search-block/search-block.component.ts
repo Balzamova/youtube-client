@@ -1,6 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SharedService } from '@app/shared/services/shared.service';
+
+import { fromEvent, of } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-block',
@@ -14,7 +17,7 @@ export class SearchBlockComponent {
     private sharedService: SharedService) {}
 
   search(value: string) {
-    if (!value) return;
+    if (!value || value.length < 3) return;
 
     this.router.navigate([`main/${value}`]);
     this.sharedService.searchInputValue = value;

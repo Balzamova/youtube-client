@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SharedService } from '@app/shared/services/shared.service';
 
-import { sortBy } from '../../models/sort-by';
+import { SortingDirection } from '../../../../../../../shared/models/sorting-direction';
 
 @Component({
   selector: 'app-sort-buttons',
@@ -21,27 +21,11 @@ export class SortButtonsComponent {
 
   sortByDate() {
     this.dateState = !this.dateState;
-    let date;
-
-    if (this.dateState) {
-      date = sortBy.dateAsc;
-    } else {
-      date = sortBy.dateDesc;
-    }
-
-    this.sort(date);
+    this.dateState ? this.sort(SortingDirection.dateAsc) : this.sort(SortingDirection.dateDesc)
   }
 
   sortByViews() {
     this.viewsState = !this.viewsState;
-    let views;
-
-    if (this.viewsState) {
-      views = sortBy.viewsAsc;
-    } else {
-      views = sortBy.viewsDesc;
-    }
-
-    this.sort(views);
+    this.viewsState ? this.sort(SortingDirection.viewsAsc) : this.sort(SortingDirection.viewsDesc)
   }
 }
